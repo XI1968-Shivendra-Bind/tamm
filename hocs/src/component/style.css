@@ -1,0 +1,22 @@
+.box {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    height: 500px;
+    border: 1px solid springgreen;
+}
+
+.inner-box {
+    height: 400px;
+    width: 400px;
+    margin: auto;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}

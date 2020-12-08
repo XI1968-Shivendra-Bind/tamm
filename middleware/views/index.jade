@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}.
+  p it it nodejs express middleware that only allows request to proceed if req has session and it's applicable only to all URLs that start with pub/proxy  and api/proxy (for example pub/proxy/bpm/start or api/proxy/adu-ms/get).
+
+  p Endpoint post and get express handler That is using middleware. For post /save/:id writes contents of request body that is JSON to file named id.json and on get reads file Id and serves back as JSON.
