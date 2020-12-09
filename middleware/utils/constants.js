@@ -1,0 +1,1 @@
+exports.URL_CHECKS = ['pub/proxy', 'api/proxy']

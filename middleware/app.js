@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// create session 
 app.use(session({
   secret: 'keyboard cat',
   name: 'demo app',
@@ -30,13 +31,10 @@ app.use(session({
 }))
 
 app.use('', indexRouter);
-app.use('/save', saveRouter);
+app.use('/save', restrictPath, saveRouter);
 
-// All routes below this middleware should have /pub/proxy or /api/proxy
-app.use(restrictPath)
-
-app.use('/pub/proxy/save', saveRouter);
-app.use('/api/proxy/save', saveRouter);
+app.use('/pub/proxy/save', restrictPath, saveRouter);
+app.use('/api/proxy/save', restrictPath, saveRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

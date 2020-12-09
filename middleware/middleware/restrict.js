@@ -1,13 +1,22 @@
+const consts = require('../utils/constants');
+const URL_CHECKS = consts.URL_CHECKS
+
 module.exports = function (req, res, next) {
-    if (!req.session.id) {
-        throw new Error('No session')
-    }
     let path = req.baseUrl + req.path
     // check URL has /pub/proxy or /api/proxy else throw error
-    if (path.indexOf('pub/proxy') === 1 || path.indexOf('api/proxy') === 1) {
-        next()
+    console.log(path);
+    let allowed = false;
+    for (let i = 0; i < URL_CHECKS.length; i++) {
+        const element = URL_CHECKS[i];
+        if (path.indexOf(element) === 1) {
+            allowed = true;
+            break;
+        }
+    }
+    if (allowed  && !req.session?.id) {
+        throw new Error(`Unauthorised access! URL must contain ${URL_CHECKS.join(' ')}`)
     } else {
-        throw new Error('Unauthorised access! URL must contain /pub/proxy or /api/proxy ')
+        next()
     }
 
 }
